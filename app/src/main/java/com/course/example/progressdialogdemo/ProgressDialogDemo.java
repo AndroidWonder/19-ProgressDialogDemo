@@ -1,5 +1,6 @@
 package com.course.example.progressdialogdemo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -15,7 +16,8 @@ public class ProgressDialogDemo extends Activity {
     
 	private TextView txt;    
 	private ProgressDialog progDailog;
-	
+
+	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
 		 @Override
 		 public void handleMessage(Message msg) {
