@@ -50,7 +50,7 @@ public class ProgressDialogDemo extends Activity {
     	public void run(){
     		try{
                 // just doing some long operation
-                Thread.sleep(5000);
+                Thread.sleep(7000);
            } catch (InterruptedException e) {  }
            
            finally {
