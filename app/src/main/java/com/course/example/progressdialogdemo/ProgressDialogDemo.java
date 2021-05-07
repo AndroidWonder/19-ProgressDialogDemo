@@ -1,28 +1,24 @@
 package com.course.example.progressdialogdemo;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
-import android.view.KeyEvent;
-import android.app.ProgressDialog;
+import android.os.Looper;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.os.Handler;
 import android.os.Message;
-/*This is a demo of a floating Progress Dialog.
-  Notice how the Handler receives information from the background thread.
- */
+import android.widget.TextView;
 
 public class ProgressDialogDemo extends Activity {
-    
-	private TextView txt;    
-	private ProgressDialog progDailog;
 
-	@SuppressLint("HandlerLeak")
-	private Handler handler = new Handler() {
+	private TextView txt;
+	private ProgressBar progress;
+
+	private Handler handler = new Handler(Looper.getMainLooper()) {
 		 @Override
 		 public void handleMessage(Message msg) {
 		     txt.setText("Processing Done");
-
+			 progress.setVisibility(View.INVISIBLE);
 		 }
 		};
 	
@@ -30,22 +26,14 @@ public class ProgressDialogDemo extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
-        txt = (TextView) this.findViewById(R.id.text01);       
-        txt.setText("Press any key to start");
-    }
-    
-    @Override   
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-		progDailog = ProgressDialog.show(this, "Progress dialog demo",
-				"Working....", true);
+        txt = (TextView)findViewById(R.id.text01);
+		progress = (ProgressBar) findViewById(R.id.progress);
+
 		Thread t = new Thread(background);
 		t.start();
+    }
 
-		return true;
-	}//
-    
     Runnable background = new Runnable() {
     	public void run(){
     		try{
@@ -55,7 +43,6 @@ public class ProgressDialogDemo extends Activity {
            
            finally {
         	   handler.sendEmptyMessage(0);
-               progDailog.dismiss();     
            }
     	}
     	   	

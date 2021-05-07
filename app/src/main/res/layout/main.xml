@@ -9,7 +9,15 @@
         android:id="@+id/text01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Rotating Progress Bar Demo"
         android:textSize="16sp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>
