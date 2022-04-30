@@ -14,11 +14,13 @@ public class ProgressDialogDemo extends Activity {
 	private TextView txt;
 	private ProgressBar progress;
 
+	//make progress bars invisible
 	private Handler handler = new Handler(Looper.getMainLooper()) {
 		 @Override
 		 public void handleMessage(Message msg) {
 		     txt.setText("Processing Done");
 			 progress.setVisibility(View.INVISIBLE);
+
 		 }
 		};
 	
@@ -30,10 +32,12 @@ public class ProgressDialogDemo extends Activity {
         txt = (TextView)findViewById(R.id.text01);
 		progress = (ProgressBar) findViewById(R.id.progress);
 
+
 		Thread t = new Thread(background);
 		t.start();
     }
 
+    //send message to Handler
     Runnable background = new Runnable() {
     	public void run(){
     		try{
